@@ -26,6 +26,7 @@ export default class App extends Component {
         <Header titulo="Noticias React API"/>
         <div className="container white contenedor-noticias">
           <ListaNoticias noticias={this.state.noticias} />
+
         </div>
       </>
     );
