@@ -8,7 +8,6 @@ const ListaNoticias = ({noticias}) => (
                     <Noticia key={noticia.url} noticia={noticia} />
                 )
             }
-
         </div>
     );
 
