@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import Header from './components/Header';
+import ListaNoticias from './components/ListaNoticias';
 
 // bcd80ac5cae74465a8bf672e46d2d25b
 
@@ -20,9 +22,12 @@ export default class App extends Component {
   }
   render() {
     return (
-      <div>
-
-      </div>
+      <>
+        <Header titulo="Noticias React API"/>
+        <div className="container white contenedor-noticias">
+          <ListaNoticias noticias={this.state.noticias} />
+        </div>
+      </>
     );
   }
 }
