@@ -6,7 +6,7 @@ export const EventosConsumer = EventosContext.Consumer;
 
 class EventosProvider extends Component {
   state = {
-      eventos:[]
+    eventos: []
   };
   token = 'SIKCSR4LRTV474UBFBJN';
   order = 'date';
@@ -14,19 +14,20 @@ class EventosProvider extends Component {
     const url = `https://www.eventbriteapi.com/v3/events/search/?q=${busqueda.nombre}&categories=${busqueda.categoria}&sort_by=${this.order}&token=${this.token}&locale=es_ES`;
     const eventos = await axios(url);
 
-    console.log(`eventos ${eventos}`);
-};
+    this.setState({
+      eventos: eventos.data.events
+    });
+  };
   render() {
     return (
-        <EventosContext.Provider
+      <EventosContext.Provider
         value={{
-            eventos: this.state.eventos,
-            obtenerEventos: this.obtenerEventos
+          eventos: this.state.eventos,
+          obtenerEventos: this.obtenerEventos
         }}
-        >
-            {this.props.children}
-
-        </EventosContext.Provider>
+      >
+        {this.props.children}
+      </EventosContext.Provider>
     );
   }
 }

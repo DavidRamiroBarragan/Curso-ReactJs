@@ -18,13 +18,13 @@ class Formulario extends Component {
     return (
       <EventosConsumer>
         {value => {
-          console.log(value);
           return (
             <form
-            onSubmit={(e) => {
-                value.obtenerEventos(e);
-            }
-                }>
+              onSubmit={event => {
+                event.preventDefault();
+                value.obtenerEventos(this.state);
+              }}
+            >
               <fieldset className='uk-fieldset uk-margin'>
                 <legend className='uk-legend uk-text-center'>
                   Busca tu evento por Nombre o Categoría
