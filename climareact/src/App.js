@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Formulario from './components/Formulario';
 import Error from './components/Error';
+import Clima from './components/Clima';
 
 function App() {
   const [ciudad, setCiudad] = useState('');
@@ -9,7 +10,7 @@ function App() {
   const [error, setError] = useState(false);
   const [resultado, setResultado] = useState({});
 
-  useEffect(()=>{
+  useEffect(() => {
     const consultarApi = async () => {
       // 75efbc7781f820991476ea28f52dace2
       const url = `https://openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=75efbc7781f820991476ea28f52dace2`;
@@ -17,9 +18,9 @@ function App() {
       const resultado = await respuesta.json();
       setResultado(resultado);
     };
-    
+
     //prevenir ejecucion
-    if(ciudad === ''){
+    if (ciudad === '') {
       return;
     }
     consultarApi();
@@ -42,6 +43,7 @@ function App() {
     componente = <Error mensaje='Ambos campos son obligatorios' />;
   } else {
     //mostrar el clima
+    componente = <Clima resultado={resultado} />;
   }
   return (
     <div className='App'>

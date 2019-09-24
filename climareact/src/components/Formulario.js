@@ -1,21 +1,22 @@
 import React, { useState } from 'react';
 
-const Formulario = ({datosConsulta}) => {
+const Formulario = ({ datosConsulta }) => {
   const [busqueda, setBusqueda] = useState({
-      ciudad: '',
-      pais: '',
+    ciudad: '',
+    pais: ''
   });
 
-    const consultarDatos = (e) => {
-        e.preventDefault();
-        datosConsulta(busqueda)
-    };
+  const consultarDatos = e => {
+    e.preventDefault();
+    datosConsulta(busqueda);
+    console.log(busqueda);
+  };
 
   const handleChange = e => {
     // Cambiar el state
     setBusqueda({
-        ...busqueda,
-        [e.target.name]  : e.target.value
+      ...busqueda,
+      [e.target.name]: e.target.value
     });
   };
 
