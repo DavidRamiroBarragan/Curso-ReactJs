@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function Formulario({ agregarCitasState }) {
   const initialState = {
@@ -113,8 +113,12 @@ function Cita({ cita, index, eliminarCita }) {
 }
 
 function App() {
-  const [state, setState] = useState([]);
-  console.log('state', state);
+  let citasIniciales = JSON.parse(localStorage.getItem('citas'));
+
+  if (!citasIniciales) {
+    citasIniciales = [];
+  }
+  const [state, setState] = useState(citasIniciales);
 
   const agregarCitasState = cita => {
     const nuevasCitas = [...state, cita];
@@ -127,6 +131,24 @@ function App() {
     setState(nuevasCitas);
   };
 
+  useEffect(() => {
+    let citasIniciales = JSON.parse(localStorage.getItem('citas'));
+
+    if (citasIniciales) {
+      localStorage.setItem('citas', JSON.stringify(state));
+    } else {
+      localStorage.setItem('citas', JSON.stringify([]));
+    }
+  }, [state]);
+
+  //cargar condicionalmente un titulo
+  let titulo = Object.keys(state).length === 0;
+  if (titulo) {
+    titulo = 'Agregar nuevas citas';
+  } else {
+    titulo = 'Citas pendientes';
+  }
+
   return (
     <>
       <h1>Administrador de pacientes</h1>
@@ -136,6 +158,7 @@ function App() {
             <Formulario agregarCitasState={agregarCitasState} />
           </div>
           <div className='one-half column'>
+            <h2>{titulo}</h2>
             {state.map((cita, index) => {
               return (
                 <Cita
