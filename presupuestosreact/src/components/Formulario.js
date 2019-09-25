@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import Error from './Error';
+import shortid from 'shortid';
 
-const Formulario = () => {
+const Formulario = ({ guardarGasto, setCrearGasto }) => {
   const [nombreGasto, setNombreGasto] = useState('');
   const [cantidadGasto, setCantidadGasto] = useState(0);
   const [error, setError] = useState(false);
@@ -13,7 +14,18 @@ const Formulario = () => {
       return;
     }
 
+    const gasto = {
+      nombreGasto,
+      cantidadGasto,
+      id: shortid.generate()
+    };
+    guardarGasto(gasto);
+    setCrearGasto(true);
     setError(false);
+    setNombreGasto('');
+    setCantidadGasto('');
+
+    // resetear el form
   };
   return (
     <form onSubmit={agregarGasto}>
@@ -23,7 +35,7 @@ const Formulario = () => {
         <label htmlFor=''>Nombre gasto</label>
         <input
           type='text'
-          name=''
+          value={nombreGasto}
           id=''
           className='u-full-width'
           placeholder='Ej. Transporte'
@@ -34,7 +46,7 @@ const Formulario = () => {
         <label htmlFor=''>Cantidad gasto</label>
         <input
           type='number'
-          name=''
+          value={cantidadGasto}
           id=''
           className='u-full-width'
           placeholder='Ej. 300'

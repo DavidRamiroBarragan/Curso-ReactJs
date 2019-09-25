@@ -3,7 +3,8 @@ import Error from './Error';
 
 export default function Pregunta({
   guardarPresupuesto,
-  setPreguntaPresupuesto
+  setPreguntaPresupuesto,
+  guardarRestante
 }) {
   const [cantidad, guardarCantidad] = useState(0);
   const [error, guardadError] = useState(false);
@@ -15,11 +16,12 @@ export default function Pregunta({
       return;
     }
     guardadError(false);
+    guardarRestante(cantidad);
     guardarPresupuesto(cantidad);
     setPreguntaPresupuesto(false);
   };
   return (
-    <div class='App container'>
+    <div className='App container'>
       <h2>Coloca tu presupuesto</h2>
 
       {error && <Error mensaje='Erro en el presupuesto' />}
