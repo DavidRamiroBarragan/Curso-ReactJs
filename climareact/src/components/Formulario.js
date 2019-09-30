@@ -9,7 +9,6 @@ const Formulario = ({ datosConsulta }) => {
   const consultarDatos = e => {
     e.preventDefault();
     datosConsulta(busqueda);
-    console.log(busqueda);
   };
 
   const handleChange = e => {
