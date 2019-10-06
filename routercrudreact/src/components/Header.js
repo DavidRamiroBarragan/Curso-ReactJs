@@ -5,9 +5,9 @@ const Header = () => {
   return (
     <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
       <div className='container'>
-        <NavLink to='/productos' className='navbar-brand'>
+        <Link to='/productos' className='navbar-brand'>
           React CRUD & Routing
-        </NavLink>
+        </Link>
         <ul className='navbar-nav mr-auto'>
           <li className="nav-item">
             <NavLink
