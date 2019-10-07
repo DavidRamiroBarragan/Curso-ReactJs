@@ -1,6 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export default function AgregarProductos() {
+  const [nombrePlatillo, guardarPlatillo] = useState('');
+  const [precioPlatillo, guardarPrecio] = useState('');
+  const [categoriaPlatillo, guardarCategoria] = useState('');
+
+  const leerValorRadio = e => {
+    guardarCategoria(e.target.value);
+  };
+
   return (
     <div className='col-md-8 mx-auto '>
       <h1 className='text-center'>Agregar Nuevo Producto</h1>
@@ -13,6 +21,7 @@ export default function AgregarProductos() {
             className='form-control'
             name='nombre'
             placeholder='Nombre Platillo'
+            onchange={guardarPlatillo}
           />
         </div>
 
@@ -23,6 +32,7 @@ export default function AgregarProductos() {
             className='form-control'
             name='precio'
             placeholder='Precio Platillo'
+            onchange={guardarPrecio}
           />
         </div>
 
@@ -34,6 +44,7 @@ export default function AgregarProductos() {
               type='radio'
               name='categoria'
               value='postre'
+              onchange={leerValorRadio}
             />
             <label className='form-check-label'>Postre</label>
           </div>
@@ -43,6 +54,7 @@ export default function AgregarProductos() {
               type='radio'
               name='categoria'
               value='bebida'
+              onchange={leerValorRadio}
             />
             <label className='form-check-label'>Bebida</label>
           </div>
@@ -53,6 +65,7 @@ export default function AgregarProductos() {
               type='radio'
               name='categoria'
               value='cortes'
+              onchange={leerValorRadio}
             />
             <label className='form-check-label'>Cortes</label>
           </div>
@@ -63,6 +76,7 @@ export default function AgregarProductos() {
               type='radio'
               name='categoria'
               value='ensalada'
+              onchange={guardarCategoria}
             />
             <label className='form-check-label'>Ensalada</label>
           </div>
