@@ -1,19 +1,46 @@
 import React, { useState } from 'react';
+import Error from './Error';
+import axios from 'axios';
 
 export default function AgregarProductos() {
   const [nombrePlatillo, guardarPlatillo] = useState('');
   const [precioPlatillo, guardarPrecio] = useState('');
-  const [categoriaPlatillo, guardarCategoria] = useState('');
+  const [categoria, guardarCategoria] = useState('');
+  const [error, guardarError] = useState(false);
 
   const leerValorRadio = e => {
     guardarCategoria(e.target.value);
+  };
+
+  const agregarProducto = async e => {
+    e.preventDefault();
+
+    if (nombrePlatillo === '' && precioPlatillo === '' && categoria === '') {
+      guardarError(true);
+      return;
+    }
+
+    guardarError(false);
+
+    try {
+      const resultado = await axios.post(' http://localhost:4000/restaurant', {
+        nombrePlatillo,
+        precioPlatillo,
+        categoria
+      });
+      console.log(resultado);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
     <div className='col-md-8 mx-auto '>
       <h1 className='text-center'>Agregar Nuevo Producto</h1>
 
-      <form className='mt-5'>
+      {error && <Error mensaje='Todos los campos son obligatorios' />}
+
+      <form className='mt-5' onSubmit={agregarProducto}>
         <div className='form-group'>
           <label>Nombre Platillo</label>
           <input
@@ -21,7 +48,7 @@ export default function AgregarProductos() {
             className='form-control'
             name='nombre'
             placeholder='Nombre Platillo'
-            onchange={guardarPlatillo}
+            onChange={e => guardarPlatillo(e.target.value)}
           />
         </div>
 
@@ -32,7 +59,7 @@ export default function AgregarProductos() {
             className='form-control'
             name='precio'
             placeholder='Precio Platillo'
-            onchange={guardarPrecio}
+            onChange={e => guardarPrecio(e.target.value)}
           />
         </div>
 
@@ -44,7 +71,7 @@ export default function AgregarProductos() {
               type='radio'
               name='categoria'
               value='postre'
-              onchange={leerValorRadio}
+              onChange={leerValorRadio}
             />
             <label className='form-check-label'>Postre</label>
           </div>
@@ -54,7 +81,7 @@ export default function AgregarProductos() {
               type='radio'
               name='categoria'
               value='bebida'
-              onchange={leerValorRadio}
+              onChange={leerValorRadio}
             />
             <label className='form-check-label'>Bebida</label>
           </div>
@@ -65,7 +92,7 @@ export default function AgregarProductos() {
               type='radio'
               name='categoria'
               value='cortes'
-              onchange={leerValorRadio}
+              onChange={leerValorRadio}
             />
             <label className='form-check-label'>Cortes</label>
           </div>
@@ -76,7 +103,7 @@ export default function AgregarProductos() {
               type='radio'
               name='categoria'
               value='ensalada'
-              onchange={guardarCategoria}
+              onChange={guardarCategoria}
             />
             <label className='form-check-label'>Ensalada</label>
           </div>
