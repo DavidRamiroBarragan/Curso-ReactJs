@@ -1,9 +1,9 @@
 {
   "restaurant": [
     {
-      "precioPlatillo": "200",
+      "precioPlatillo": "2014",
       "nombrePlatillo": "Cheesecake",
-      "categoria": "postres",
+      "categoria": "postre",
       "id": 1
     },
     {
@@ -13,10 +13,28 @@
       "id": 2
     },
     {
-      "nombrePlatillo": "pèpe",
-      "precioPlatillo": "",
+      "precioPlatillo": "100",
+      "nombrePlatillo": "manolo",
       "categoria": "cortes",
       "id": 3
+    },
+    {
+      "precioPlatillo": "200",
+      "nombrePlatillo": "Margarita",
+      "categoria": "postre",
+      "id": 4
+    },
+    {
+      "nombrePlatillo": "Este es un nuevo producto",
+      "precioPlatillo": "250",
+      "categoria": "bebida",
+      "id": 5
+    },
+    {
+      "nombrePlatillo": "fdgdfgsd",
+      "precioPlatillo": "57456457543",
+      "categoria": "bebida",
+      "id": 6
     }
   ]
 }

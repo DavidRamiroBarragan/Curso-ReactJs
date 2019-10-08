@@ -9,22 +9,30 @@ import axios from 'axios';
 
 function App() {
   const [productos, setProductos] = useState([]);
+  const [recargar, setRecargar] = useState(true);
 
   useEffect(() => {
-    const consultarApi = async () => {
-      const resultados = await axios.get('http://localhost:4000/restaurant');
-      setProductos(resultados.data);
-    };
+    if (recargar) {
+      const consultarApi = async () => {
+        const resultados = await axios.get('http://localhost:4000/restaurant');
+        setProductos(resultados.data);
+      };
 
-    consultarApi();
-  }, []);
+      consultarApi();
+      setRecargar(false);
+    }
+  }, [recargar]);
 
   return (
     <Router>
       <Header />
       <main className='container mt-5'>
         <Switch>
-          <Route exact path='/nuevo-producto' component={AgregarProductos} />
+          <Route
+            exact
+            path='/nuevo-producto'
+            render={() => <AgregarProductos setRecargar={setRecargar} />}
+          />
           <Route
             exact
             path='/productos'
@@ -34,7 +42,10 @@ function App() {
           <Route
             exact
             path='/productos/editar/:id'
-            component={EditarProductos}
+            render={({match: {params: {id}}}) => {
+              const producto = productos.find(producto => producto.id === parseInt(id))
+              return <EditarProductos producto={producto} setRecargar={setRecargar} />;
+            }}
           />
         </Switch>
         <p className='mt-4 p2 text-center'>Todos los derechos reservados</p>
