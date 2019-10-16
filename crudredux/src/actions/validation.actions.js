@@ -11,6 +11,20 @@ export function validarFormularioAction() {
  }
 }
 
-export const validarFormulario = () => ({
-  type: VALIDAR_FORMULARIO
-});
+export const validarFormulario = () => {
+  return {
+    type: VALIDAR_FORMULARIO
+  }
+};
+
+export const validacionExito = () => {
+  return {
+    type: VALIDAR_FORMULARIO_SUCCESS
+  }
+};
+
+export const validacionError = () => {
+  return {
+    type: VALIDAR_FORMULARIO_ERROR
+  }
+};

@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import { crearNuevoProductoAction } from '../actions/productos.actions';
-import { validarFormularioAction } from '../actions/validation.actions';
-import { useDispatch } from 'react-redux';
+import {
+  validarFormularioAction,
+  validacionExito,
+  validacionError
+} from '../actions/validation.actions';
+import { useDispatch, useSelector } from 'react-redux';
 
-const NuevoProducto = () => {
+const NuevoProducto = ({ history }) => {
   const [nombre, guardarNombre] = useState('');
   const [precio, guardarPrecio] = useState('');
 
@@ -11,21 +15,29 @@ const NuevoProducto = () => {
   const agregarProducto = producto =>
     dispatch(crearNuevoProductoAction(producto));
   const validarFormulario = () => dispatch(validarFormularioAction());
+  const exitoValidacion = () => dispatch(validacionExito());
+  const errorValidacion = () => dispatch(validacionError());
+
+  // Obtener los datos del state de Redux
+
+  const error = useSelector(({ error: { error } }) => error);
 
   const submitNuevoProducto = e => {
     e.preventDefault();
     validarFormulario();
     // Vallidar el producto
     if (nombre.trim() === '' || precio.trim() === '') {
+      errorValidacion();
       return;
     }
-
-    agregarProducto({ nombre, precio });
     // Si pasa la validación
+    exitoValidacion();
 
     // Crear nuevo producto
+    agregarProducto({ nombre, precio });
 
     // Redireccionar
+    history.push('/');
   };
 
   return (
@@ -65,6 +77,11 @@ const NuevoProducto = () => {
                 Agregar
               </button>
             </form>
+            {error && (
+              <p className='alert alert-danger text-center mt-4'>
+                Todos los campos son obligatorios
+              </p>
+            )}
           </div>
         </div>
       </div>
