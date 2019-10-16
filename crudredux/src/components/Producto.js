@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { eliminarProductoAction } from '../actions/productos.actions';
 import { useDispatch } from 'react-redux';
+import { Swal } from 'sweetalert2';
 
 const Producto = ({ producto }) => {
   const dispatch = useDispatch();
