@@ -6,6 +6,7 @@ import {
   validacionError
 } from '../actions/validation.actions';
 import { useDispatch, useSelector } from 'react-redux';
+import ErrorFormulario from './ErrorFormulario';
 
 const NuevoProducto = ({ history }) => {
   const [nombre, guardarNombre] = useState('');
@@ -78,9 +79,7 @@ const NuevoProducto = ({ history }) => {
               </button>
             </form>
             {error && (
-              <p className='alert alert-danger text-center mt-4'>
-                Todos los campos son obligatorios
-              </p>
+              <ErrorFormulario mensaje={'Todos los campos son obligatorios'} />
             )}
           </div>
         </div>
