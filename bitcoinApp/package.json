@@ -1,0 +1,19 @@
+{
+  "name": "bitcoinapp",
+  "version": "1.0.0",
+  "description": "Bitcoin App con SSR",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "built": "next build",
+    "start": "next start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "next": "^9.1.1",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2"
+  }
+}
