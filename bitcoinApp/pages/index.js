@@ -1,20 +1,5 @@
-import Link from 'next/link';
+import Navegacion from '../components/Navegacion';
 
-const Index = () => (
-  <div>
-    <ul>
-      <li>
-        <Link href='/'>
-          <a>Inicio</a>
-        </Link>
-      </li>
-      <li>
-        <Link href='/nosotros'>
-          <a>Nosotros</a>
-        </Link>
-      </li>
-    </ul>
-  </div>
-);
+const Index = () => <Navegacion></Navegacion>;
 
 export default Index;

@@ -1,3 +1,5 @@
-const Nosotros = () => <p>Hola desde nosotros</p>;
+import Navegacion from '../components/Navegacion';
+
+const Nosotros = () => <Navegacion></Navegacion>;
 
 export default Nosotros;
