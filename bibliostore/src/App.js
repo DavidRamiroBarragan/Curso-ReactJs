@@ -1,25 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Suscriptores from './components/suscriptores/Suscriptores';
+import MostrarSuscriptor from './components/suscriptores/MostrarSuscriptor';
+import NuevoSuscriptor from './components/suscriptores/NuevoSuscriptor';
+import EditarSuscriptores from './components/suscriptores/EditarSuscriptores';
+import Navbar from './components/layout/Navbar';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Navbar />
+      <div className='container'>
+        <Switch>
+          <Route exact path='/suscriptores' component={Suscriptores}></Route>
+          <Route
+            exact
+            path='/suscriptores/nuevo'
+            component={NuevoSuscriptor}
+          ></Route>
+          <Route
+            exact
+            path='/suscriptores/mostrar/:id'
+            component={MostrarSuscriptor}
+          ></Route>
+          <Route
+            exact
+            path='/suscriptores/editar/:id'
+            component={EditarSuscriptores}
+          ></Route>
+        </Switch>
+      </div>
+    </BrowserRouter>
   );
 }
 
