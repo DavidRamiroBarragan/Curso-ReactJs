@@ -2,10 +2,7 @@ import React from 'react';
 import { useFirebaseConnect, useFirestoreConnect } from 'react-redux-firebase';
 
 const Suscriptores = () => {
-  useFirebaseConnect(['suscriptores']);
-  useFirestoreConnect([
-    { collection: 'suscriptores' } // or 'todos'
-  ])
+  useFirestoreConnect(['suscriptores']);
   return <h1>Suscriptores</h1>;
 };
 
